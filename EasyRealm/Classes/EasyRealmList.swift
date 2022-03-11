@@ -9,13 +9,12 @@
 import Foundation
 import RealmSwift
 
-
 internal protocol EasyRealmList {
-  func children() -> [Object]
+    func children() -> [Object]
 }
 
-extension List:EasyRealmList {
-  internal func children() -> [Object] {
-    return self.compactMap { return $0 as? Object }
-  }
+extension List: EasyRealmList {
+    internal func children() -> [Object] {
+        return self.compactMap { return $0 as? Object }
+    }
 }

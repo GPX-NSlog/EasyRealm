@@ -9,9 +9,9 @@
 import Foundation
 
 public enum EasyRealmError: Error {
-  case RealmQueueCantBeCreate
-  case ObjectCantBeResolved
-  case ObjectHaveNotPrimaryKey
-  case ObjectWithPrimaryKeyNotFound
-  case ManagedVersionOfObjectDoesntExist
+    case RealmQueueCantBeCreate
+    case ObjectCantBeResolved
+    case ObjectHaveNotPrimaryKey
+    case ObjectWithPrimaryKeyNotFound
+    case ManagedVersionOfObjectDoesntExist
 }

@@ -25,8 +25,8 @@ class TestSave: XCTestCase {
   }
   
   func testSaveUnmanaged() {
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
     try! Pokeball.create().er.save()
     try! Pokeball.create().er.save()
     let numberOfPokemon = try! Pokemon.er.all()
@@ -36,9 +36,9 @@ class TestSave: XCTestCase {
   }
 
   func testSaveManaged() {
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
     let managedPokemon = testPokemon.compactMap { try! Pokemon.er.fromRealm(with: $0) }
-    managedPokemon.forEach { try! $0.er.save(update: true) }
+    managedPokemon.forEach { try! $0.er.save(update: .all) }
   }
   
   func testMeasureSaveUnmanaged() {
@@ -49,16 +49,16 @@ class TestSave: XCTestCase {
 
   func testMeasureSaveManaged() {
     let pokemon = HelpPokemon.pokemons(with: [self.testPokemon[0]]).first!
-    try! pokemon.er.save(update: true)
+    try! pokemon.er.save(update: .all)
     self.measure {
-      try! pokemon.er.save(update: true)
+      try! pokemon.er.save(update: .all)
     }
   }
 
 
   func testSaveLotOfComplexObject() {
     for _ in 0...10000 {
-      try! HelpPokemon.generateCapturedRandomPokemon().er.save(update: true)
+      try! HelpPokemon.generateCapturedRandomPokemon().er.save(update: .all)
     }
   }
   

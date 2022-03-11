@@ -27,7 +27,7 @@ class TestVariable: XCTestCase {
   }
   
   func testIsManaged() {
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
+      HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
     var pokemon = HelpPokemon.pokemons(with: [self.testPokemon[0]]).first!
     XCTAssertFalse(pokemon.er.isManaged)
     if let pok = pokemon.er.managed {
@@ -41,7 +41,7 @@ class TestVariable: XCTestCase {
     try! pokemon.er.edit {
       $0.pokeball?.branding = "Masterball"
     }
-    try! pokemon.er.save(update: true)
+      try! pokemon.er.save(update: .all)
 
     let managed = pokemon.er.managed
     XCTAssertNotNil(managed)
@@ -55,7 +55,7 @@ class TestVariable: XCTestCase {
     try! pokemon.er.edit {
       $0.pokeball?.branding = "Masterball"
     }
-    try! pokemon.er.save(update: true)
+      try! pokemon.er.save(update: .all)
     
     let managed = pokemon.er.managed
     XCTAssertNotNil(managed)
@@ -79,7 +79,7 @@ class TestVariable: XCTestCase {
     }
 
     
-    try! trainer.er.save(update: true)
+      try! trainer.er.save(update: .all)
     let managed = trainer.er.managed!
     XCTAssertTrue(managed.er.isManaged)
     XCTAssertTrue(managed.pokedex!.er.isManaged)

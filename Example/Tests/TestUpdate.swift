@@ -26,8 +26,8 @@ class TestUpdate: XCTestCase {
   }
   
   func testUpdateUnmanaged() {
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
     let pokemons = try! Pokemon.er.all()
     let unmanaged = Array(pokemons).map { $0.er.unmanaged }
     unmanaged.forEach { $0.level = 42 }

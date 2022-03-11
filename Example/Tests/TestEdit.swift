@@ -32,7 +32,7 @@ class TestEdit: XCTestCase {
   }
   
   func testSaveManaged() {
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
     let pokemons = try! Pokemon.er.all()
     pokemons.forEach { try! $0.er.edit { $0.level = 42 } }
     pokemons.forEach {

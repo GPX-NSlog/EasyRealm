@@ -26,7 +26,7 @@ class TestDelete: XCTestCase {
   }
   
   func testDeleteAll() {
-    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: true) }
+    HelpPokemon.pokemons(with: self.testPokemon).forEach { try! $0.er.save(update: .all) }
     try! Pokemon.er.deleteAll()
     let count = try! Pokemon.er.all().count
     XCTAssertEqual(count, 0)
@@ -36,7 +36,7 @@ class TestDelete: XCTestCase {
   func testDeleteUnmanaged() {
     let pokemons = HelpPokemon.pokemons(with: self.testPokemon)
     pokemons.forEach {
-      try! $0.er.save(update: true)
+      try! $0.er.save(update: .all)
     }
     pokemons.forEach { pokemon in
       XCTAssert(pokemon.realm == nil)
@@ -48,7 +48,7 @@ class TestDelete: XCTestCase {
   
   func testDeleteManaged() {
     HelpPokemon.pokemons(with: self.testPokemon).forEach {
-      try! $0.er.save(update: true)
+      try! $0.er.save(update: .all)
     }
     
     let pokemons = try! Pokemon.er.all()
@@ -66,7 +66,7 @@ class TestDelete: XCTestCase {
     let pokedex = Pokedex()
     trainer.pokemons.append(objectsIn: HelpPokemon.allPokedex())
     trainer.pokedex = pokedex
-    try! trainer.er.save(update: true)
+      try! trainer.er.save(update: .all)
 
 
     XCTAssertEqual(try! Trainer.er.all().count, 1)
@@ -86,7 +86,7 @@ class TestDelete: XCTestCase {
     let pokedex = Pokedex()
     trainer.pokemons.append(objectsIn: HelpPokemon.allPokedex())
     trainer.pokedex = pokedex
-    try! trainer.er.save(update: true)
+    try! trainer.er.save(update: .all)
     
     
     XCTAssertEqual(try! Trainer.er.all().count, 1)
